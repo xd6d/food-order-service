@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Orders</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<span th:insert="admin/header-admin.html" style="padding: 0"></span>
+<th:block th:each="entry : ${orders}">
+    <div class="cont">
+        <div class="block1">
+            <h2 th:text="'Order №' + ${entry.key.getId()}"></h2>
+            <ul>
+                <div style="font-size: 19px; padding-left: 0"
+                     th:text="${entry.key.getUser().getUsername()} + ' ordered:'"></div>
+                <span th:each="dishEntry : ${entry.value}">
+                    <ul style="font-size: 17px; padding-left: 15px"
+                        th:text="${dishEntry.key.name} + ' x ' + ${dishEntry.value}"></ul>
+                </span>
+            </ul>
+            <h4 th:text="'Total: ' + ${entry.key.getTotal()} + '$'"></h4>
+        </div>
+        <form class="g" method="post"><span th:text="'Status: ' + ${entry.key.getStatus()}"></span><br>
+            <button style="color: forestgreen;" name="id" th:value="${entry.key.getId()}" formaction="/admin/accept">Accept</button>
+            <p></p>
+            <button style="color: lightcoral; margin-left: 1px; " name="id" th:value="${entry.key.getId()}" formaction="/admin/deny">Deny
+            </button>
+            <span th:if="${entry.key.getStatus()}=='Denied'">
+                <p></p>
+                <button name="id" th:value="${entry.key.getId()}" formaction="/admin/remove">Remove</button>
+                </span>
+        </form>
+    </div>
+    <hr>
+</th:block>
+</body>
+</html>

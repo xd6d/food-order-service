@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Create an account</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:insert="guest/header-nouser.html" style="padding: 0"></div>
+<div style="text-align: center; height: 100px">
+    <form method="post" action="/create-account">
+        <label>Username:<br>
+            <input type="text" name="username" value="" th:value="${username}">
+        </label>
+        <label><p>Password:<br>
+            <input type="password" name="password">
+        </label><p>
+        <button>Create</button>
+    </form>
+    <div th:if="${exception!=null}">
+        <h3 style="color:red;" th:text="${exception}"></h3>
+    </div>
+    Already a member? <a href="/login" style="color: blue"> Sign in. </a>
+</div>
+</body>
+</html>

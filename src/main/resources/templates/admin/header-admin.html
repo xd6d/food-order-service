@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<header>
+  <a href="/menu"><img src="/static/img/Menu.png" th:src="@{/img/Menu.png}" align="left" alt="Menu"></a>
+  <a href="/admin/orders"><img src="/static/img/orders.png" th:src="@{/img/orders.png}" align="left" alt="Orders"
+                               style="margin-left: 150px; height: 63px; margin-top: 10px"></a>
+  <h3 align="right" style="padding-bottom: 21px; padding-top: 21px">
+    <span style="padding: 0" sec:authentication="name"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+          href="/logout">Log out</a>&nbsp;&nbsp;
+  </h3>
+  <div style="clear: left"></div>
+  <hr style="margin: 0">
+</header>

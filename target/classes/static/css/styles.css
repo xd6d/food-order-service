@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 5px;
+}
+a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+}
+header {
+    background-color: greenyellow;
+    height: 98px;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+a:visited{
+    color: blue;
+}
+hr{
+    padding: 0;
+    margin: 5px;
+}
+.cont{
+    display: flex;
+}
+.g{
+    padding-top: 40px;;
+    right: 0;
+}
+.block1{
+    width: 87%;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div sec:authorize="!isAuthenticated()" style="padding: 0">
+    <span th:insert="guest/header-nouser.html" style="padding: 0"></span>
+</div>
+<div sec:authorize="hasRole('ROLE_USER')" style="padding: 0">
+    <span th:insert="user/header-user.html" style="padding: 0"></span>
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')" style="padding: 0">
+    <span th:insert="admin/header-admin.html" style="padding: 0"></span>
+    <span th:insert="admin/add-dish.html" style="padding: 0"></span>
+</div>
+<center>
+    <th:block th:each="dish : ${dishes}">
+        <div style="font-size: 18pt; font-family: 'Bookman Old Style',serif" th:text="${dish.name}"></div>
+        <img height="200" th:src="${dish.img}" th:alt="${dish.name}">
+        <div style="font-size: 13pt; font-family: 'Lucida Console',cursive;" th:text="${dish.description}"></div>
+        <h3 th:text="'Price: ' + ${dish.price} + '$'"></h3>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <form action="/admin/remove-dish" method="post">
+                <button th:value="${dish.id}" name="remove">Remove from menu</button>
+            </form>
+        </div>
+        <div sec:authorize="hasRole('ROLE_USER')">
+            <form action="/user/add" method="post">
+                <button th:value="${dish.id}" name="add">Add</button>
+            </form>
+        </div>
+        <div th:if="${bucketMap.get(dish)!=null}">
+            <div th:text="'Added: ' + ${bucketMap.get(dish)}"></div>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <button disabled="disabled">Add</button>
+            Sign in to add
+        </div>
+        <br>
+        <hr>
+    </th:block>
+</center>
+<div style="text-align: center;"><h3><a href="#top">Back to top</a></h3></div>
+</body>
+</html>

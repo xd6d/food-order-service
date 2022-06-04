@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<span th:insert="user/header-user.html" style="padding: 0"></span>
+<div style="text-align: center;">
+    <th:block th:each="entry : ${bucketMap}">
+        <h2 th:text="${entry.key.name}"></h2>
+        <img height="200" th:src="${entry.key.img}" th:alt="${entry.key.name}">
+        <h4 th:text="'Price: ' + ${entry.key.price} + '$'"></h4>
+        <h4 th:text="'Amount: ' + ${entry.value}"></h4>
+        <form method="post">
+            <button formaction="/user/minus" name="minus" th:value="${entry.key.id}">-
+            </button>&nbsp;&nbsp;&nbsp;<button formaction="/user/plus" name="add" th:value="${entry.key.id}">+</button>
+        </form>
+        <br>
+    </th:block>
+    <h4 th:text="'Total: ' + ${total} + '$'"></h4>
+    <span th:if="${total!=0}"><form action="/user/confirm" method="post"><button>Confirm</button></form></span>
+</div>
+<div th:if="${success=='success'}" style="text-align: center; font-size: 50px; margin-top: 80px; color: chartreuse;">
+    Your order has been successfully submitted!
+</div>
+</body>
+</html>
