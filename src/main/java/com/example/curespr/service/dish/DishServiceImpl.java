@@ -3,8 +3,7 @@ package com.example.curespr.service.dish;
 import com.example.curespr.dao.DishRepository;
 import com.example.curespr.entity.Dish;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
+import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
 @Service
@@ -92,7 +91,11 @@ public class DishServiceImpl implements DishService {
             end = bucket.indexOf('.', start+1);
             if (end==-1) end = bucket.length();
             int amount = Integer.parseInt(bucket.substring(start+1, end));
-            order.put(dishRepository.getById(id), amount);
+            try {
+                order.put(dishRepository.getById(id), amount);
+            } catch (EntityNotFoundException e){
+                bucket = bucket.replace("." + id + ":" + amount, "");
+            }
             start = bucket.indexOf('.', start+1);
         }
         return order;

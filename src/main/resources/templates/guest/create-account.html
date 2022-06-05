@@ -2,9 +2,11 @@
 <head>
     <title>Create an account</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.png}" type="image/x-icon">
 </head>
 <body>
 <div th:insert="guest/header-nouser.html" style="padding: 0"></div>
+<hr style="margin: 0">
 <div style="text-align: center; height: 100px">
     <form method="post" action="/create-account">
         <label>Username:<br>

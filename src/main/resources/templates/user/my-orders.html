@@ -3,17 +3,22 @@
 <head>
     <title>My orders</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.png}" type="image/x-icon">
 </head>
 <body>
 <span th:insert="user/header-user.html" style="padding: 0"></span>
+<hr style="margin: 0">
 <th:block th:each="entry : ${myorders}">
     <div class="cont">
         <div class="block1">
             <h2 th:text="'Order №' + ${entry.key.getId()}"></h2>
             <ul>
-                <div style="font-size: 19px; padding-left: 0" th:text="${entry.key.getUser().getUsername()} + ' ordered:'"></div>
+                <div style="font-size: 19px; padding-left: 0"
+                     th:text="${entry.key.getUser().getUsername()} + ' ordered:'"></div>
                 <span th:each="dishEntry : ${entry.value}">
-                    <ul style="font-size: 17px; padding-left: 15px" th:text="${dishEntry.key.name} + ' x ' + ${dishEntry.value}"></ul>
+                    <li style="font-size: 17px; padding-left: 15px" th:text="${dishEntry.key.name}"></li>
+                    <ul style="font-size: 17px; padding-left: 30px"
+                        th:text="${dishEntry.key.getPrice()} + '$ x ' + ${dishEntry.value}"></ul>
                 </span>
             </ul>
             <h4 th:text="'Total: ' + ${entry.key.getTotal()} + '$'"></h4>
@@ -22,6 +27,5 @@
     </div>
     <hr>
 </th:block>
-
 </body>
 </html>

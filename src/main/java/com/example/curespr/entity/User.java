@@ -3,11 +3,7 @@ package com.example.curespr.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-
-import java.util.Collection;
-import java.util.Map;
 import java.util.Objects;
 
 @Getter

@@ -1,7 +1,6 @@
 package com.example.curespr.service.order;
 
 import com.example.curespr.entity.Order;
-
 import java.util.Comparator;
 
 public class OrderIdComparator implements Comparator<Order> {

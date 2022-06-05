@@ -1,7 +1,6 @@
 package com.example.curespr.service.user;
 
 import com.example.curespr.entity.User;
-
 import java.util.List;
 import java.util.Optional;
 

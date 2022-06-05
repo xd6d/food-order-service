@@ -1,7 +1,6 @@
 package com.example.curespr.service.dish;
 
 import com.example.curespr.entity.Dish;
-
 import java.util.Comparator;
 
 public class DishIdComparator implements Comparator<Dish> {

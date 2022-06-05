@@ -3,9 +3,11 @@
 <head>
     <title>Order</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="shortcut icon" th:href="@{/img/logo.png}" type="image/x-icon">
 </head>
 <body>
 <span th:insert="user/header-user.html" style="padding: 0"></span>
+<hr style="margin: 0">
 <div style="text-align: center;">
     <th:block th:each="entry : ${bucketMap}">
         <h2 th:text="${entry.key.name}"></h2>

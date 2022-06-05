@@ -5,6 +5,8 @@ import com.example.curespr.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @SessionAttributes(names = {"bucket"})
@@ -34,7 +36,9 @@ public class ApplicationController {
 
     @PostMapping("/create-account")
     public String createAccountPost(@RequestParam(name = "username", required = false) String username,
-                                    @RequestParam(name = "password", required = false) String password, Model model) {
+                                    @RequestParam(name = "password", required = false) String password,
+                                    HttpServletResponse response,
+                                    Model model) {
         if (username == null || password == null) {
             model.addAttribute("exception", "Your username or password was entered incorrectly.");
             return "guest/create-account";
@@ -44,11 +48,17 @@ public class ApplicationController {
             model.addAttribute("username", username);
             return "guest/create-account";
         }
+        Cookie cookie = new Cookie("created", "created");
+        cookie.setMaxAge(1);
+        response.addCookie(cookie);
         return "redirect:/login";
     }
 
     @GetMapping("/login")
-    public String loginGet() {
+    public String loginGet(@CookieValue(name="created", required = false, defaultValue = "") String created,
+                           Model model) {
+        if (created.equals("created"))
+            model.addAttribute("created", "created");
         return "guest/login";
     }
 }

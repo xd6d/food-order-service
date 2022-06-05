@@ -1,16 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <header>
-    <a href="/menu"><img src="/static/img/Menu.png" th:src="@{/img/Menu.png}" align="left" alt="Menu"></a>
+    <a href="/menu"><img src="/static/img/Menu.png" th:src="@{/img/Menu.png}" align="left" alt="Menu" style="margin-right: 6%"></a>
     <a href="/user/order"><img src="/static/img/current-order.png" th:src="@{/img/current-order.png}" align="left"
                                alt="Current order"
-                               style="margin-left: 130px; height: 63px; margin-top: 10px"></a>
+                               style="margin-right: 7%; height: 63px; margin-top: 10px"></a>
     <a href="/user/orders"><img src="/static/img/my-orders.png" th:src="@{/img/my-orders.png}" align="left"
                                 alt="My orders"
-                                style="margin-left: 200px; height: 63px; margin-top: 10px"></a><br>
+                                style="height: 63px; margin-top: 10px"></a><br>
     <h3 align="right" style="padding-bottom: 21px; padding-top: 21px">
         <span style="padding: 0" sec:authentication="name"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
             href="/logout">Log out</a>&nbsp;&nbsp;
     </h3>
     <div style="clear: left"></div>
-    <hr style="margin: 0">
 </header>
